@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entenda sua cirurgia: revascularização do miocárdio</title>
+<style>
+:root{--bg:#f7f5f2;--card:#fff;--tx:#1f2430;--mu:#5c6472;--ac:#b5343c;--bd:#e3ded8;--soft:#fbeeee;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161b;--card:#1d2027;--tx:#eceae6;--mu:#a2a9b5;--ac:#ef6a5b;--bd:#2d313a;--soft:#2a1f22}}
+:root[data-theme="dark"]{--bg:#14161b;--card:#1d2027;--tx:#eceae6;--mu:#a2a9b5;--ac:#ef6a5b;--bd:#2d313a;--soft:#2a1f22}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:960px;margin:0 auto;padding:16px}
+h1{font-size:1.45rem;margin:.2rem 0}
+.sub{color:var(--mu);margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lab{font-size:.8rem;color:var(--mu);width:100%;margin-bottom:-4px}
+button,input{font:inherit;color:inherit}
+.seg button{border:1px solid var(--bd);background:var(--card);padding:8px 12px;border-radius:999px;cursor:pointer}
+.seg button.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.seg button:disabled{opacity:.45;cursor:not-allowed}
+input[type=date]{border:1px solid var(--bd);background:var(--card);padding:7px 10px;border-radius:10px}
+.chip{background:var(--soft);color:var(--ac);padding:6px 12px;border-radius:999px;font-weight:600;font-size:.9rem}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:820px){.grid{grid-template-columns:1.1fr 1fr}}
+.stage{position:relative;height:340px;padding:0;overflow:hidden}
+canvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+.badge{position:absolute;top:10px;left:10px;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:5px 10px;font-size:.82rem;display:none}
+.hint{position:absolute;bottom:8px;right:12px;font-size:.75rem;color:var(--mu)}
+.leg{position:absolute;bottom:8px;left:10px;font-size:.75rem;color:var(--mu);display:flex;flex-direction:column;gap:2px}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.dots{display:flex;gap:6px;margin-bottom:10px}
+.dots button{flex:1;height:8px;border:0;border-radius:4px;background:var(--bd);cursor:pointer;padding:0}
+.dots button.on{background:var(--ac)}
+.n{color:var(--ac);font-weight:700;font-size:.85rem}
+h2{font-size:1.2rem;margin:.1rem 0 .4rem}
+.calm{background:var(--soft);border-radius:12px;padding:10px 12px;margin:10px 0;font-size:.95rem}
+.nav{display:flex;gap:8px;margin-top:10px}
+.nav button{flex:1;padding:11px;border-radius:12px;border:1px solid var(--bd);background:var(--card);cursor:pointer;font-weight:600}
+.nav .p{background:var(--ac);border-color:var(--ac);color:#fff}
+.nav button:disabled{opacity:.4}
+details{border-top:1px solid var(--bd);padding:8px 0}
+summary{cursor:pointer;font-weight:600}
+.fn{font-size:.8rem;color:var(--mu);margin-top:8px}
+.tg label{margin-right:12px;font-size:.9rem}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.st{background:var(--soft);border-radius:12px;padding:12px}.st b{display:block;font-size:1.35rem;color:var(--ac)}.st span{font-size:.85rem;color:var(--mu)}
+.live{font-size:1.05rem;margin:0 0 10px}.live b{color:var(--ac)}
+.tl{margin:0;padding-left:18px}.tl li{margin-bottom:8px}
+.dz{width:100%;height:auto;display:block}.pp{stroke:var(--bd);stroke-width:46;fill:none}
+.fl{stroke:#d64545;stroke-width:9;fill:none;stroke-dasharray:2 18;stroke-linecap:round;animation:mv 1s linear infinite}
+.fg{stroke:#e9a23b;stroke-width:16;fill:none;stroke-linecap:round}@keyframes mv{to{stroke-dashoffset:-20}}
+.dz text{fill:var(--mu);font-size:13px;font-family:inherit}
+input[type=range]{width:100%;accent-color:var(--ac)}.bt{border:1px solid var(--ac);background:var(--card);color:var(--ac);padding:9px 14px;border-radius:12px;cursor:pointer;font-weight:600}.bt.on{background:var(--ac);color:#fff}
+h3{font-size:1rem;margin:14px 0 4px}
+</style></head>
+<body><div class="w">
+<h1>Entenda sua cirurgia do coração</h1>
+<p class="sub">Revascularização do miocárdio (“ponte de safena e mamária”), explicada passo a passo.</p>
+
+<div class="card row">
+ <div class="lab">Sua cirurgia</div>
+ <div class="seg"><button class="on">Revascularização</button><button disabled>Válvulas (em breve)</button></div>
+ <div class="lab">Técnica prevista</div>
+ <div class="seg" id="tech"><button data-v="cec" class="on">Com CEC</button><button data-v="off">Sem CEC</button></div>
+</div>
+
+<div class="card"><div class="n">Antes de começar</div><h2>O que é a doença arterial coronariana?</h2>
+<p>O coração é um músculo que nunca para de trabalhar, e ele também precisa de sangue. Quem leva esse sangue ao próprio músculo são as <b>artérias coronárias</b>, vasos finos que passam pela superfície do coração.</p>
+<p>Com os anos, gordura e colesterol se acumulam na parede dessas artérias e formam <b>placas</b>. O vaso fica estreito, como um cano entupindo aos poucos, e o músculo recebe menos sangue. Isso causa cansaço e dor ou aperto no peito aos esforços (angina). Se a placa se rompe e forma um coágulo, a artéria pode fechar de vez, e isso é o <b>infarto</b>.</p>
+<p><b>Experimente:</b> aumente o entupimento e depois ligue a ponte.</p>
+<svg class="dz" viewBox="0 0 600 170" role="img" aria-label="Artéria com placa e ponte de desvio">
+<path class="pp" d="M10 100H500"/>
+<path class="fl" d="M10 100H275"/><path class="fl" id="fr" d="M325 100H500"/>
+<ellipse id="p1" cx="300" cy="77" rx="40" ry="8" fill="#f0c040" stroke="#b08a1c"/><ellipse id="p2" cx="300" cy="123" rx="40" ry="8" fill="#f0c040" stroke="#b08a1c"/>
+<g id="by" style="display:none"><path class="fg" d="M200 78C200 5 410 5 410 78"/><path class="fl" style="stroke:#fff;opacity:.8" d="M200 78C200 5 410 5 410 78"/></g>
+<rect id="mu" x="505" y="55" width="85" height="90" rx="18" fill="#b5343c"/>
+<text x="10" y="150">Sangue vindo da aorta</text><text x="300" y="150" text-anchor="middle">Obstrução</text><text x="547" y="160" text-anchor="middle">Músculo</text>
+</svg>
+<input type="range" id="pr" min="0" max="95" value="30" aria-label="Grau de obstrução">
+<div class="row" style="margin:8px 0"><button class="bt" id="bb">Ligar a ponte (desvio)</button><span id="pt" style="flex:1;min-width:220px"></span></div>
+<div class="fn">Valores aproximados e ilustrativos. Quem avalia a gravidade no seu caso é o seu cardiologista, pelos exames.</div>
+<h3>Por que desviar o sangue?</h3>
+<p>A cirurgia não retira a placa. Ela cria um <b>caminho novo</b>, como um desvio de trânsito quando a rua está interditada: o sangue sai de um ponto bom (a aorta ou a artéria mamária) e chega à artéria depois do bloqueio, voltando a alimentar o músculo.</p>
+<h3>Qual a importância disso?</h3>
+<ul><li>Alivia a dor no peito e o cansaço e devolve disposição para as atividades do dia a dia.</li><li>Em casos como várias artérias comprometidas, tronco da coronária esquerda, diabetes ou coração com função reduzida, pode diminuir o risco de infarto e melhorar a sobrevida. A indicação é individual.</li><li>As pontes, principalmente a mamária, podem durar muitos anos.</li></ul>
+<h3>O que a cirurgia não faz</h3>
+<p>Ela não cura a doença: as placas continuam nas outras artérias. Por isso remédios, alimentação, atividade física e parar de fumar seguem essenciais depois da cirurgia.</p>
+</div>
+<div class="grid">
+ <div class="card stage">
+  <canvas id="cv"></canvas>
+  <div class="badge" id="bd"></div>
+  <div class="leg"><span><i style="background:#f0c040"></i>Placa (obstrução)</span><span><i style="background:#e9a23b"></i>Enxerto arterial (mamária)</span><span><i style="background:#5b7fd6"></i>Enxerto venoso (safena)</span></div>
+  <div class="hint">Arraste para girar</div>
+ </div>
+ <div class="card">
+  <div class="dots" id="dots"></div>
+  <div class="n" id="num"></div>
+  <h2 id="tt"></h2>
+  <div id="tx"></div>
+  <div class="calm" id="cm"></div>
+  <div class="tg"><label><input type="checkbox" id="ca" checked> Mostrar enxerto arterial</label><label><input type="checkbox" id="cv2" checked> Mostrar enxerto venoso</label></div>
+  <div id="fq"></div>
+  <div class="nav"><button id="pv">Anterior</button><button class="p" id="nx">Próximo</button></div>
+ </div>
+</div>
+<div class="card"><h2>Números em perspectiva</h2>
+<p class="live">Em média, uma cirurgia cardíaca começa no mundo a cada <b>~35 segundos</b>. Desde que você abriu esta página: <b id="lv">0</b>.</p>
+<div class="sg">
+<div class="st"><b>≈ 340 mil/ano</b><span>revascularizações nos EUA (≈ 930 por dia). Estimativa de mercado, iData Research.</span></div>
+<div class="st"><b>800 mil a 1 milhão/ano</b><span>cirurgias cardíacas no mundo (≈ 2.200 a 2.700 por dia). Estimativa aproximada, fontes variam.</span></div>
+<div class="st"><b>≈ 58 por dia</b><span>revascularizações pelo SUS (63.272 entre 2005 e 2007, ≈ 21 mil por ano). Dado antigo.</span></div>
+<div class="st"><b>≈ 3 mil/ano</b><span>cirurgias cardíacas no InCor-HCFMUSP (média de 1984 a 2007), sendo a revascularização a mais frequente.</span></div>
+</div></div>
+<div class="card"><h2>René Favaloro e a ponte de safena</h2>
+<ol class="tl">
+<li><b>1923:</b> nasce em La Plata, Argentina. Antes da carreira nos EUA, trabalhou cerca de 12 anos como médico rural em La Pampa.</li>
+<li><b>1962:</b> vai para a Cleveland Clinic, onde trabalha ao lado de Mason Sones, pioneiro da angiografia coronária.</li>
+<li><b>1967:</b> realiza a revascularização com veia safena (ponte entre a aorta e a coronária) e sistematiza a técnica, que se espalha pelo mundo.</li>
+<li><b>Anos 1980:</b> estudos mostram que a artéria mamária interna oferece melhor sobrevida e passa a ser o enxerto de ouro. Hoje, mamária e safena costumam ser combinadas.</li>
+<li><b>1975:</b> volta à Argentina e funda em Buenos Aires uma fundação dedicada ao ensino e à cirurgia cardíaca. Faleceu em 2000.</li>
+</ol></div>
+<p class="fn">Números são estimativas de fontes e anos diferentes; para dados atuais do Brasil, consulte o DATASUS e a SBCCV. Datas históricas conforme a literatura: confira antes de citar. Material educativo e ilustrativo: a anatomia está simplificada e não substitui a explicação da sua equipe. Seu cirurgião define a técnica e os enxertos do seu caso. Em caso de dúvida, pergunte sempre.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>window.THREE||document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"><\/script>')</script>
+<script>
+const $=s=>document.querySelector(s);
+const S={tech:"cec",step:0};let setTarget=()=>{};
+const steps=[
+{t:"O que acontece no seu coração",v:{l:0,n:0,f:"before"},x:()=>`As artérias coronárias levam sangue ao músculo do coração. Com o tempo, placas de gordura (em amarelo) estreitam esses vasos e o músculo recebe menos sangue. Daí vêm o cansaço, a dor no peito e o risco de infarto.`,c:`Esse problema é muito comum, e a revascularização é uma das cirurgias cardíacas mais estudadas e realizadas.`,q:[["Por que não colocar só um stent?","Depende do número e do local das obstruções, do diabetes e de outros fatores. Sua equipe indica o que é melhor para você."]]},
+{t:"Anestesia e preparo",v:{l:0,n:0,f:"before"},x:()=>`No centro cirúrgico, a equipe de anestesia o faz dormir. Durante toda a cirurgia você não sente dor nem percebe nada, e monitores acompanham coração, pressão e oxigênio o tempo todo.`,c:`Você estará acompanhado por uma equipe inteira, atenta a cada detalhe.`,q:[["Posso acordar no meio da cirurgia?","Não. A anestesia geral é mantida e monitorada continuamente."]]},
+{t:"Acesso ao coração",v:{l:0,n:0,f:"before"},x:()=>`O cirurgião abre a pele no meio do peito e separa com cuidado o osso do esterno (esternotomia) para enxergar o coração. No final, o osso é fechado com fios de aço, que ficam no corpo.`,c:`O osso cicatriza como qualquer outro osso, por isso há cuidados nas semanas seguintes.`,q:[["Quanto tempo leva para o osso cicatrizar?","Em geral de 6 a 8 semanas. Nesse período, evita-se esforço com os braços e peso."]]},
+{t:"Preparando os enxertos (as “pontes”)",v:{l:.35,n:.35,f:"before"},x:()=>`A ponte é feita com um vaso seu. Arterial: a artéria mamária interna, que corre atrás do esterno, é liberada e continua ligada à sua origem. Venoso: um trecho da veia safena da perna é retirado. O cirurgião escolhe quais usar no seu caso.`,c:`Outras veias da perna assumem o trabalho da safena retirada.`,q:[["Tirar a veia da perna prejudica?","Em geral não. Pode haver inchaço e cicatriz na perna por um tempo."]]},
+{t:"Preparando o coração",v:{l:.35,n:.35},x:m=>m=="cec"?`Com CEC (circulação extracorpórea): uma máquina coração-pulmão assume temporariamente o trabalho de bombear e oxigenar o sangue. O coração fica parado e imóvel, o que facilita as costuras muito delicadas.`:`Sem CEC: o coração continua batendo e levando sangue ao corpo. Um aparelho chamado estabilizador segura só a pequena área onde a ponte será costurada, deixando-a quase parada.`,c:`As duas técnicas são consagradas. Seu cirurgião escolhe a mais segura para você.`,q:[["A CEC é perigosa?","Tem riscos e benefícios que o cirurgião avalia caso a caso. É usada com segurança há décadas."]]},
+{t:"Costurando as pontes",v:{l:1,n:1},x:m=>`O cirurgião costura cada enxerto na coronária, depois da obstrução. A mamária sai da sua origem e é ligada à artéria. A safena fica com uma ponta na aorta e outra na coronária. O sangue ganha um novo caminho e desvia do bloqueio.`+(m=="cec"?" O coração segue parado, com a máquina cuidando da circulação.":" O coração segue batendo, com o estabilizador na área da costura."),c:`São costuras muito finas, feitas com instrumentos de precisão.`,q:[["Quanto tempo duram as pontes?","A mamária costuma durar mais que a veia, por isso é muito valorizada. A durabilidade varia de pessoa para pessoa e depende também do controle dos fatores de risco."]]},
+{t:"O sangue volta a fluir",v:{l:1,n:1,f:"after"},x:m=>m=="cec"?`A máquina é desligada aos poucos e o coração volta a bater sozinho, às vezes com um pequeno estímulo. O cirurgião confere o fluxo em cada ponte.`:`O estabilizador é solto e o sangue já corre pelas pontes. O cirurgião confere o fluxo em cada uma.`,c:`Agora o músculo do coração recebe sangue novamente, passando pela obstrução.`,q:[["As pontes funcionam logo?","Sim, o fluxo é verificado ainda na sala de cirurgia."]]},
+{t:"Recuperação",v:{l:1,n:1,f:"after"},x:()=>`Fecham-se o esterno e a pele. Você acorda na UTI, geralmente com respirador por poucas horas e alguns drenos no peito. A fisioterapia começa cedo e a internação dura alguns dias. Depois, vem a reabilitação cardíaca e o controle de colesterol, pressão, glicose e cigarro.`,c:`Cada dia é um pouco melhor que o anterior. Tire as dúvidas com a equipe.`,q:[["Quando volto às atividades?","Caminhadas leves começam cedo. Direção e esforços são liberados pelo médico, em geral após algumas semanas."]]}
+];
+const dots=$("#dots");steps.forEach((_,i)=>{const b=document.createElement("button");b.onclick=()=>go(i);b.setAttribute("aria-label","Etapa "+(i+1));dots.appendChild(b)});
+function go(i){S.step=Math.max(0,Math.min(steps.length-1,i));draw()}
+function draw(){const s=steps[S.step];
+ [...dots.children].forEach((b,i)=>b.classList.toggle("on",i<=S.step));
+ $("#num").textContent=`Etapa ${S.step+1} de ${steps.length}`;$("#tt").textContent=s.t;$("#tx").textContent=s.x(S.tech);$("#cm").textContent=s.c;
+ $("#fq").innerHTML=s.q.map(q=>`<details><summary>${q[0]}</summary><p>${q[1]}</p></details>`).join("");
+ $("#pv").disabled=S.step==0;$("#nx").textContent=S.step==steps.length-1?"Recomeçar":"Próximo";
+ const b=$("#bd"),on=S.step>=4&&S.step<=5;b.style.display=on?"block":"none";
+ b.textContent=S.tech=="cec"?"Máquina de CEC ligada · coração parado":"Estabilizador · coração batendo";
+ setTarget()}
+$("#pv").onclick=()=>go(S.step-1);$("#nx").onclick=()=>go(S.step==steps.length-1?0:S.step+1);
+document.querySelectorAll("#tech button").forEach(b=>b.onclick=()=>{S.tech=b.dataset.v;document.querySelectorAll("#tech button").forEach(x=>x.classList.toggle("on",x==b));draw()});
+$("#ca").onchange=$("#cv2").onchange=()=>setTarget();
+
+
+const pr=$("#pr"),bb=$("#bb");let byp=false;
+function upd(){const p=pr.value/100,ry=p*23;["#p1","#p2"].forEach(i=>$(i).setAttribute("ry",Math.max(.1,ry)));
+ const f=byp?1:1-p;$("#fr").setAttribute("d",byp?"M410 100H500":"M325 100H500");$("#fr").style.opacity=byp?1:Math.max(0,1-p*1.05);$("#mu").style.opacity=.3+.7*f;$("#by").style.display=byp?"block":"none";
+ bb.classList.toggle("on",byp);bb.textContent=byp?"Desligar a ponte":"Ligar a ponte (desvio)";
+ let t=p<.5?"Até cerca de 50%: em geral sem sintomas, o sangue ainda passa bem.":p<.7?"Entre 50% e 70%: pode faltar sangue quando o coração acelera, como nos esforços.":"Acima de cerca de 70%: falta sangue até em esforços leves, com dor no peito e maior risco de infarto.";
+ if(byp)t+=" Com a ponte, o sangue contorna o bloqueio e o músculo volta a receber sangue.";$("#pt").textContent=t}
+pr.oninput=upd;bb.onclick=()=>{byp=!byp;upd()};upd();
+const t0=Date.now();setInterval(()=>{$("#lv").textContent=Math.floor((Date.now()-t0)/35000)},1000);
+draw();
+try{
+/* ---- 3D ---- */
+const cv=$("#cv"),R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(40,1,.1,100);cam.position.set(0,.4,8.5);
+sc.add(new THREE.AmbientLight(0xffffff,.65));const dl=new THREE.DirectionalLight(0xffffff,.9);dl.position.set(3,5,6);sc.add(dl);
+const g=new THREE.Group(),body=new THREE.Group();g.add(body);sc.add(g);
+const M=(c,o)=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.5,metalness:.05,transparent:true},o||{}));
+const V=p=>p.map(a=>new THREE.Vector3(...a));
+const hm=M(0xffffff,{roughness:.55,vertexColors:true});
+const sm=t=>t*t*(3-2*t);
+function paint(geo,fn){const p=geo.attributes.position,c=new Float32Array(p.count*3),k=new THREE.Color();for(let i=0;i<p.count;i++){fn(k,p.getX(i),p.getY(i),p.getZ(i));c.set([k.r,k.g,k.b],i*3)}geo.setAttribute("color",new THREE.BufferAttribute(c,3))}
+const hg=new THREE.SphereGeometry(1,72,72),hp=hg.attributes.position;
+for(let i=0;i<hp.count;i++){let X=hp.getX(i)*1.15,Y=hp.getY(i)*1.4,Z=hp.getZ(i)*.95;
+ if(Y<0){const t=-Y/1.4;X*=1-.6*t;Z*=1-.5*t;X+=.5*t*t}
+ if(Z<0)Z*=.8;
+ const n=Math.sin(X*9)*Math.sin(Y*8+Z*7)*.015;hp.setXYZ(i,X*(1+n),Y,Z*(1+n))}
+hg.computeVertexNormals();
+const fat=new THREE.Color(.85,.7,.45);
+paint(hg,(c,x,y,z)=>{const f=sm(Math.max(0,Math.min(1,(y-.35)/.9)))*(.5+.5*Math.sin(x*7+y*5)*Math.cos(z*6));c.setRGB(.66,.2,.23).lerp(fat,f*.85)});
+const heart=new THREE.Mesh(hg,hm);body.add(heart);
+function blob(r,s,p,c){const gg=new THREE.SphereGeometry(r,32,32);gg.scale(...s);paint(gg,k=>k.setHex(c));const m=new THREE.Mesh(gg,hm);m.position.set(...p);body.add(m)}
+blob(.5,[1,1.1,.8],[-.85,.8,.15],0x8f2a34);blob(.28,[1,1.2,.7],[.95,.85,.35],0x962c36);
+function tube(p,r,c){const cu=new THREE.CatmullRomCurve3(V(p)),m=M(c,{roughness:.45}),me=new THREE.Mesh(new THREE.TubeGeometry(cu,64,r,12),m);body.add(me);return{cu,m,me}}
+const rc0=new THREE.Raycaster();heart.updateMatrixWorld(true);
+function surf(a,o){return a.map(([x,y])=>{rc0.set(new THREE.Vector3(x,y,5),new THREE.Vector3(0,0,-1));const h=rc0.intersectObject(heart)[0];return[x,y,h?h.point.z+o:.5]})}
+const ao=tube([[-.1,.8,.1],[-.15,1.7,.15],[0,2.4,0],[.7,2.4,-.2],[1,1.9,-.3]],.24,0xd97a6c);
+[.2,.45,.7].forEach(x=>tube([[x,2.45,-.05],[x,2.95,-.05]],.09,0xd97a6c));
+tube([[.15,.9,.55],[.35,1.7,.65],[.75,2.1,.2]],.2,0x6e86b8);tube([[-.9,.6,-.1],[-.9,2.4,-.15]],.17,0x5a72a8);
+const da=tube(surf([[.05,.95],[.2,.35],[.36,-.35],[.5,-1],[.6,-1.3]],.035),.06,0xe3856a);
+const rc=tube(surf([[-.2,.9],[-.75,.65],[-1,.05],[-.85,-.55],[-.5,-1]],.035),.06,0xe3856a);
+tube(surf([[.3,.45],[.75,.25],[.98,-.25]],.03),.035,0xe3856a);tube(surf([[-.95,-.35],[-.6,-.7],[-.3,-1.15]],.03),.035,0xe3856a);
+const bl=[da,rc].map(t=>{const m=new THREE.Mesh(new THREE.SphereGeometry(.12,16,16),M(0xf0c040));m.scale.set(1,1,1.3);m.position.copy(t.cu.getPoint(.3));body.add(m);return m});
+const li=tube([[1.4,2.3,.2],[1.85,1.4,.8],[1.5,.4,1.1],[.9,-.15,1],da.cu.getPoint(.55).toArray()],.055,0xe9a23b);
+const ve=tube([ao.cu.getPoint(.3).toArray(),[-.9,1.9,.6],[-1.5,1.2,.8],[-1.45,.3,.7],rc.cu.getPoint(.5).toArray()],.07,0x5b7fd6);
+g.position.y=-.6;
+const PS=[],pm=new THREE.SphereGeometry(.045,8,8),pmat=new THREE.MeshBasicMaterial({color:0xff5a4a});
+function setFlow(k){PS.forEach(p=>body.remove(p.m));PS.length=0;
+ const P=k=="before"?[[ao.cu,0,1],[da.cu,0,.3],[rc.cu,0,.3]]:k=="after"?[[ao.cu,0,1],[li.cu,0,1],[ve.cu,0,1],[da.cu,.55,1],[rc.cu,.5,1]]:[];
+ P.forEach(([cu,a,b])=>{const n=k=="before"&&a==0&&b==1?8:6;for(let i=0;i<n;i++){const m=new THREE.Mesh(pm,pmat);body.add(m);PS.push({m,cu,a,b,t:i/n,g:cu==li.cu?"l":cu==ve.cu?"n":""})}})}
+let tg={l:0,n:0},fl="";
+setTarget=function(){const v=steps[S.step].v;tg.l=v.l*($("#ca").checked?1:0);tg.n=v.n*($("#cv2").checked?1:0);
+ const f=(S.step==4&&S.tech=="cec")?"":v.f||"";if(f!==fl||true){fl=f;setFlow(f)}}
+let rx=.1,ry=-.1,drag=false,lx=0,ly=0;
+cv.onpointerdown=e=>{drag=true;lx=e.clientX;ly=e.clientY;cv.setPointerCapture(e.pointerId)};
+cv.onpointerup=cv.onpointercancel=()=>drag=false;
+cv.onpointermove=e=>{if(!drag)return;ry+=(e.clientX-lx)*.01;rx=Math.max(-1,Math.min(1,rx+(e.clientY-ly)*.01));lx=e.clientX;ly=e.clientY};
+function size(){const w=cv.clientWidth,h=cv.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+new ResizeObserver(size).observe(cv);size();
+const pale=new THREE.Color(0xb9a2b0),red=new THREE.Color(0xffffff);let T=0;
+function fade(m,t,o){o.l=0;m.material.opacity+=(t-m.material.opacity)*.08;m.visible=m.material.opacity>.03}
+function loop(){requestAnimationFrame(loop);T+=.016;
+ const stopped=S.tech=="cec"&&S.step>=4&&S.step<=5;
+ const s=stopped?1:1+.03*Math.sin(T*6);body.scale.setScalar(s);hm.color.lerp(stopped?pale:red,.08);
+ g.rotation.x=rx;g.rotation.y=ry+(drag?0:Math.sin(T*.4)*.15);
+ [li.m,li.me].forEach(()=>{});
+ li.m.opacity+=(tg.l-li.m.opacity)*.08;li.me.visible=li.m.opacity>.03;
+ ve.m.opacity+=(tg.n-ve.m.opacity)*.08;ve.me.visible=ve.m.opacity>.03;
+ PS.forEach(p=>{if(p.g=="l"&&tg.l<.9||p.g=="n"&&tg.n<.9){p.m.visible=false;return}
+  p.m.visible=true;p.t=(p.t+.006)%1;p.m.position.copy(p.cu.getPoint(p.a+(p.b-p.a)*p.t))});
+ R.render(sc,cam)}
+
+draw();loop();
+}catch(e){console.error(e);const st=document.querySelector(".stage");if(st)st.innerHTML='<div style="padding:24px;color:var(--mu)">Não foi possível carregar o modelo 3D. Verifique a conexão com a internet e recarregue a página. O restante do conteúdo continua funcionando.</div>'}
+</script></body></html>
